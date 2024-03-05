@@ -1,4 +1,5 @@
 ﻿using chatapi.Services;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Microsoft.AspNetCore.SignalR;
 
 namespace chatapi.Hubs
@@ -21,7 +22,23 @@ namespace chatapi.Hubs
         public override async Task OnDisconnectedAsync(Exception e)
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, "come&chat");
+            var user = _chatService.GetUserByConnectionId(Context.ConnectionId);
+            _chatService.RemoveUserFromList(user);
+            await DisplayOnline();
             await base.OnDisconnectedAsync(e);
+            
+        }
+
+        public async Task addUserConnectionId(string myname)
+        {
+            _chatService.AddUserConnectionId(myname, Context.ConnectionId);
+            await DisplayOnline();
+        }
+
+        private async Task DisplayOnline()
+        {
+            var onlineUsers = _chatService.GetOnlineUsers();
+            await Clients.Groups("come&chat").SendAsync("OnlineUsers", onlineUsers);
         }
     }
 }

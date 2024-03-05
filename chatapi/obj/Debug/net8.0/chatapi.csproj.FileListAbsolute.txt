@@ -62,3 +62,4 @@ C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\refin
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chatapi.pdb
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chatapi.genruntimeconfig.cache
 C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\ref\chatapi.dll
+C:\Users\TN-99348\Desktop\angular\ffff\api\mychat\chatapi\obj\Debug\net8.0\chatapi.sourcelink.json

@@ -1,4 +1,4 @@
-<ng-container *ngIf="!openChat">
+<ng-container *ngIf="openChat===false">
     <div class="text-center">
         <h1>Chat with other people</h1>
     </div>
@@ -30,6 +30,6 @@
     </div>
 </ng-container>
 
-<ng-container *ngIf="openChat" >
+<ng-container *ngIf="openChat===true" >
     <app-chat (logoutEmmiter)="Close()"></app-chat>
 </ng-container>

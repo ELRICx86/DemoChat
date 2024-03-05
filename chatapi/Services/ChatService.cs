@@ -39,7 +39,7 @@ namespace chatapi.Services
             {
                 foreach(var val in  Users)
                 {
-                    if (val.Value.ToLower() == connectionId)
+                    if (val.Value.ToLower() == connectionId.ToLower())
                     {
                         return val.Key;
                     }
@@ -65,7 +65,7 @@ namespace chatapi.Services
 
         public void RemoveUserFromList(string userId)
         {
-            if (!Users.ContainsKey(userId))
+            if (Users.ContainsKey(userId))
             {
                 Users.Remove(userId);
             }
