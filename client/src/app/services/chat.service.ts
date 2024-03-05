@@ -2,15 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../Models/user';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { Message } from '../Models/message';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+
   myName : string ="";
   apiUrl : string ="https://localhost:7288";
 
   onlineUsers : any [] =[];
+
+  msgs: Message[]=[];
   
   private chatConnection?: HubConnection;
   constructor(private http : HttpClient) {
@@ -38,6 +42,10 @@ export class ChatService {
         this.onlineUsers = [...onlineUsers];
         //console.log(onlineUsers);
       })
+
+      this.chatConnection.on("NewMessage",(newMessage: Message)=>{
+          this.msgs =[...this.msgs, newMessage];
+      })
    }
 
    stopChatConnection(){
@@ -51,4 +59,16 @@ export class ChatService {
       console.log(error);
     })
    }
+
+   async sendMessage(content: string) {
+     const message: Message ={
+      from: this.myName,
+      message: content
+     };
+
+     return  this.chatConnection?.invoke("ReceiveMessage", message).catch(error => console.log(error));
+     
+  }
+
+  
 }

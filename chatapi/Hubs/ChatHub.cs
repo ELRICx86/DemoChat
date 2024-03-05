@@ -1,5 +1,5 @@
-﻿using chatapi.Services;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using chatapi.Dtos;
+using chatapi.Services;
 using Microsoft.AspNetCore.SignalR;
 
 namespace chatapi.Hubs
@@ -39,6 +39,13 @@ namespace chatapi.Hubs
         {
             var onlineUsers = _chatService.GetOnlineUsers();
             await Clients.Groups("come&chat").SendAsync("OnlineUsers", onlineUsers);
+        }
+
+
+
+        public async Task ReceiveMessage(MessageDto message)
+        {
+            await Clients.Group("come&chat").SendAsync("NewMessage", message);
         }
     }
 }

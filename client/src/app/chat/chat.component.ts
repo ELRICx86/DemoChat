@@ -8,6 +8,9 @@ import { ChatService } from '../services/chat.service';
   styleUrl: './chat.component.css'
 })
 export class ChatComponent implements OnInit,OnDestroy {
+sendMessage(content:string) {
+  this.chatService.sendMessage(content);
+}
 
   /**
    *

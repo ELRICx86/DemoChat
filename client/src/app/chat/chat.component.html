@@ -29,30 +29,10 @@
                 Message
             </div>
             <div class="card-body" style="min-height: 500px;">
-                <div style="overflow-y: auto; height: 450px;">
-                    <p class="card-text">
-                        <span class="text-primary">User1</span>
-                        <span class="ml-1">some Messages</span>
-                    </p>
-                    <p class="card-text">
-                        <span class="text-primary">User2</span>
-                        <span class="ml-1">some Messages</span>
-                    </p>
-                </div>
+                <app-messages [messages]="chatService.msgs" />
             </div>
             <div class="card-footer">
-                <form autocomplete="off">
-                    <div class="row">
-                        <div class="col-9">
-                            <input type="text" class="form-control" placeholder="Send Messages">
-                        </div>
-                        <div class="col-3">
-                            <div class="d-grid">
-                                <button class="btn btn-dark btn-block" type="submit">Send</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <app-chat-input (contentEmit)="sendMessage($event)" />
             </div>
         </div>
     </div>
