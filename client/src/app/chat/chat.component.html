@@ -14,7 +14,7 @@
                 <div class="row mt-1" *ngFor="let user of chatService.onlineUsers">
                     <div class="col">
                         <div class="d-grid">
-                            <button class="btn btn-success card-text btn-block" [ngClass]="user===chatService.myName?'btn-success':'btn-dark'" [disabled]="user===chatService.myName">{{user}}</button>
+                            <button [value]="user" class="btn btn-success card-text btn-block"  (click)="childClick(user)" [ngClass]="user===chatService.myName?'btn-success':'btn-dark'" [disabled]="user===chatService.myName">{{user}}</button>
                         </div>
                     </div>
                 </div>
@@ -26,10 +26,11 @@
     <div class="col-lg-9">
         <div class="card border-secondary">
             <div class="card-header h3 text-muted text-center">
-                Message
+                {{title}}
             </div>
             <div class="card-body" style="min-height: 500px;">
-                <app-messages [messages]="chatService.msgs" />
+                <app-messages *ngIf="!clicked"   [messages]="chatService.msgs" />
+                <app-private-message *ngIf="clicked" [Private]="chatService.pmsgs" />
             </div>
             <div class="card-footer">
                 <app-chat-input (contentEmit)="sendMessage($event)" />

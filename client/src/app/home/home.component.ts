@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
 
@@ -9,6 +9,7 @@ import { ChatService } from '../services/chat.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
+  @Input() temp : any;
   userform: FormGroup = new FormGroup([]);
   submitted: boolean = false;
   apiErrorMessages: string[] = [];

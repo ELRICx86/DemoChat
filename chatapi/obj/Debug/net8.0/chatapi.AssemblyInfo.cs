@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("chatapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ca31166229129293092b56816ecc7bec10441d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8678354060c0b203d128211a4f21c3e72a2e1ac8")]
 [assembly: System.Reflection.AssemblyProductAttribute("chatapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("chatapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

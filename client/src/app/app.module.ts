@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChatComponent } from './chat/chat.component';
 import { ChatInputComponent } from './chat-input/chat-input.component';
 import { MessagesComponent } from './messages/messages.component';
+import { PrivateMessageComponent } from './private-message/private-message.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MessagesComponent } from './messages/messages.component';
     FooterComponent,
     ChatComponent,
     ChatInputComponent,
-    MessagesComponent
+    MessagesComponent,
+    PrivateMessageComponent
   ],
   imports: [
     BrowserModule,

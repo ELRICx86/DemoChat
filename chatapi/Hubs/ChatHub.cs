@@ -41,6 +41,14 @@ namespace chatapi.Hubs
             await Clients.Groups("come&chat").SendAsync("OnlineUsers", onlineUsers);
         }
 
+        public async Task ReceivePrivate(MessageDto messageDto)
+        {
+            var sender = _chatService.GetConnectionIdByUser(messageDto.To);
+            var receiver = _chatService.GetConnectionIdByUser(messageDto.From);
+            await Clients.Clients(sender, receiver).SendAsync("privateMessage", messageDto);
+            
+        }
+
 
 
         public async Task ReceiveMessage(MessageDto message)

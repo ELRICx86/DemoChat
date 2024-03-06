@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../Models/user';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { Message } from '../Models/message';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ChatService {
   apiUrl : string ="https://localhost:7288";
 
   onlineUsers : any [] =[];
-
+  pmsgs: Message[]=[];
   msgs: Message[]=[];
   
   private chatConnection?: HubConnection;
@@ -44,9 +45,16 @@ export class ChatService {
       })
 
       this.chatConnection.on("NewMessage",(newMessage: Message)=>{
-          this.msgs =[...this.msgs, newMessage];
+          this.msgs.push(newMessage);
+          //this.msgs =[...this.msgs, newMessage];
       })
+      this.chatConnection.on("privateMessage",(newMessage: Message)=>{
+            this.pmsgs.push(newMessage);
+          })
+
    }
+
+
 
    stopChatConnection(){
     this.chatConnection?.stop().catch(error =>{
@@ -68,6 +76,16 @@ export class ChatService {
 
      return  this.chatConnection?.invoke("ReceiveMessage", message).catch(error => console.log(error));
      
+  }
+
+  async sendPrivateMessage(title:string, content: string){
+    const message: Message ={
+      from: this.myName,
+      to: title,
+      message: content
+    };
+    return this.chatConnection?.invoke("ReceivePrivate", message).catch(error => console.log(error)); 
+
   }
 
   
